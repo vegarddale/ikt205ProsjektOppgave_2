@@ -33,7 +33,7 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.testBtn.setOnClickListener{
-            viewModel.test()
+            viewModel.testCreateGame()
         }
     }
 }
