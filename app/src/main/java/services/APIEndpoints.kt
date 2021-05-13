@@ -5,7 +5,7 @@ import com.uia.ikt205prosjektoppgave2.R
 
 class APIEndpoints(private val context:Context) { // TODO: 4/29/2021 skal vel helst være singleton
 
-    var currentGameId:String? = null // TODO: 5/3/2021 hvis denne heller er i viewmodellen gjør det ingen ting om denne ikke er singleton 
+    var currentGameId:String? = null
 
     fun createGameUrl():String{
         return "%1s%2s%3s".format(context.getString(R.string.protocol), context.getString(R.string.domain),context.getString(R.string.base_path))
