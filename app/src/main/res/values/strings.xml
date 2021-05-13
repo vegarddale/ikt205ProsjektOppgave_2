@@ -9,5 +9,12 @@
     <string name="poll_game_path">/%1s/poll</string>
     <string name="update_game_path">/%1s/update</string>
     <string name="game_service_key">Zxzro8jMMi</string>
+    <string name="Create">Create Game</string>
+    <string name="cancel">Cancel</string>
+    <string name="joinGame">Join Game</string>
+    <string name="player_2">Player 2:</string>
+    <string name="player_1">Player 1:</string>
+    <string name="winner">Winner: </string>
+    <string name="game_over">Game Over</string>
 
 </resources>

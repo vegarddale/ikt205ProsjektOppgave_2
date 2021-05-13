@@ -33,7 +33,6 @@ class GameService (private val context: Context, private val apiEndpoints: APIEn
                     val game = (Gson().fromJson(it.toString(0), Game::class.java))
                     apiEndpoints.currentGameId = game.gameId
                     callback(game,null)
-
                 }, {
 
             callback(null, it.networkResponse.statusCode)
@@ -45,16 +44,16 @@ class GameService (private val context: Context, private val apiEndpoints: APIEn
                 return headers
             }
         }
-
         requestQue.add(request)
 
     }
 
     fun joinGame(playerId:String, gameId:String, callback: GameServiceCallback){
+        apiEndpoints.currentGameId = gameId
         val url = apiEndpoints.joinGameUrl()
         val requestData = JSONObject().apply {
             put("player", playerId)
-            put("state", gameId)
+            put("gameId", gameId)
         }
 
         val request = object : JsonObjectRequest(Request.Method.POST,url, requestData,
@@ -74,15 +73,15 @@ class GameService (private val context: Context, private val apiEndpoints: APIEn
                 return headers
             }
         }
-
         requestQue.add(request)
     }
 
-    fun updateGame(gameId: String, state:GameState, callback: GameServiceCallback){
+    fun updateGame(updatedGame:Game, callback: GameServiceCallback){
         val url = apiEndpoints.updateGameUrl()
         val requestData = JSONObject().apply {
-            put("gameId", gameId)
-            put("state", JSONArray(state))
+            put("players", JSONArray(updatedGame.players))
+            put("gameId", updatedGame.gameId)
+            put("state", JSONArray(updatedGame.state))
         }
 
         val request = object : JsonObjectRequest(Request.Method.POST,url, requestData,
@@ -105,15 +104,13 @@ class GameService (private val context: Context, private val apiEndpoints: APIEn
         requestQue.add(request)
     }
 
-    fun pollGame(gameId: String,callback:GameServiceCallback){
+    fun pollGame(callback:GameServiceCallback){
         val url = apiEndpoints.pollGameUrl()
-        val requestData = JSONObject().apply {
-            put("gameId", gameId)
-        }
+        val requestData = JSONObject()
 
-        val request = object : JsonObjectRequest(Request.Method.POST,url, requestData,
+        val request = object : JsonObjectRequest(Request.Method.GET,url, requestData,
                 {
-                    println("game updated")
+                    println("game polled")
                     val game = (Gson().fromJson(it.toString(0), Game::class.java))
                     callback(game,null)
 

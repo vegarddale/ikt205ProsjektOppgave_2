@@ -18,5 +18,12 @@
         android:id="@+id/game"
         android:name="com.uia.ikt205prosjektoppgave2.GameFragment"
         android:label="fragment_game"
-        tools:layout="@layout/fragment_game" />
+        tools:layout="@layout/fragment_game" >
+        <argument
+            android:name="PlayerNr"
+            app:argType="integer" />
+        <argument
+            android:name="initialGame"
+            app:argType="data.Game" />
+    </fragment>
 </navigation>
