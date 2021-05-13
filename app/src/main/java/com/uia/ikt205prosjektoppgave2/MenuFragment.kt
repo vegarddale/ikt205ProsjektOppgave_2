@@ -1,6 +1,7 @@
 package com.uia.ikt205prosjektoppgave2
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -55,7 +56,7 @@ class MenuFragment : Fragment(), GameDialogListener {
     override fun onDialogCreateGame(player: String) {
          gameManager.createGame(player, gameManager.startingGameState) { game: Game?, err:Int? ->
             if (err != null){
-                // TODO: 5/8/2021 give feedback
+                Log.e("com.uia.ikt205prosjektoppgave2", "failed to create game network response: $err")
             }
             else{
                 navigateToGame(1, game!!)
@@ -66,7 +67,7 @@ class MenuFragment : Fragment(), GameDialogListener {
     override fun onDialogJoinGame(player: String, gameId: String) {
         gameManager.joinGame(player, gameId){ game: Game?, err:Int? ->
             if (err != null){
-                // TODO: 5/8/2021 give feedback
+                Log.e("com.uia.ikt205prosjektoppgave2", "failed to join game network response: $err")
             }
             else{
                 navigateToGame(2, game!!)

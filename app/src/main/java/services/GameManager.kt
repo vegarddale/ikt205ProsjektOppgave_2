@@ -1,5 +1,6 @@
 package services
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import data.Game
 import data.GameState
@@ -27,7 +28,7 @@ class GameManager @Inject constructor(private val gameService: GameService) {
     private fun pollGame() {
         gameService.pollGame { game: Game?, err: Int? ->
             if (err != null) {
-                // TODO: 5/8/2021 give feedback
+                Log.e("com.uia.ikt205prosjektoppgave2", "failed to poll game network response: $err")
             } else {
                 if(game != currentGame.value){
                     currentGame.postValue(game)
@@ -45,7 +46,7 @@ class GameManager @Inject constructor(private val gameService: GameService) {
     fun updateGame(updatedGame:Game) {
         gameService.updateGame(updatedGame) { game: Game?, err: Int? ->
             if (err != null) {
-                // TODO: 5/8/2021 give feedback
+                Log.e("com.uia.ikt205prosjektoppgave2", "failed to update game network response: $err")
             } else {
                 currentGame.value = game
                 checkGameOver(game!!.state)
@@ -118,7 +119,7 @@ class GameManager @Inject constructor(private val gameService: GameService) {
         return false
     }
 
-    private fun checkGameOver(state: GameState){
+     fun checkGameOver(state: GameState){
         if (checkHorizontal(state)) gameOver.value = true
         if (checkDiagonal(state)) gameOver.value = true
         if (checkVertical(state)) gameOver.value = true
