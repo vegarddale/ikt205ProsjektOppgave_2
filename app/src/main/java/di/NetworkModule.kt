@@ -16,7 +16,5 @@ class NetworkModule {
     @Singleton
     @Provides
     fun provideGameService(@ApplicationContext context: Context) : GameService = GameService(context, APIEndpoints(context))
-
 }
-
 

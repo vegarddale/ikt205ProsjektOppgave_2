@@ -1,6 +1,5 @@
 package com.uia.ikt205prosjektoppgave2
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,14 +8,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.core.view.isGone
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.uia.ikt205prosjektoppgave2.databinding.FragmentGameBinding
 import dagger.hilt.android.AndroidEntryPoint
 import data.Game
-import data.GameState
-import dialogs.GameDialogListener
 import dialogs.GameOverDialogFragment
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -57,7 +53,6 @@ class GameFragment : Fragment(), GameOverDialogFragment.GameOverDialogListener {
                 lastClickedButton?.isEnabled = false
                 lastClickedButton = null
             }
-
         }
 
         return binding.root
@@ -78,7 +73,14 @@ class GameFragment : Fragment(), GameOverDialogFragment.GameOverDialogListener {
                 }
             }
         })
+        gameManager.draw.observe(viewLifecycleOwner, {
+            if(it==true){
+                showGameOverDialog("Draw")
+            }
+        })
     }
+
+
 
      private fun getUpdatedBoard():List<List<String>>{
          val board = mutableListOf(mutableListOf("","",""), mutableListOf("","",""), mutableListOf("","",""))

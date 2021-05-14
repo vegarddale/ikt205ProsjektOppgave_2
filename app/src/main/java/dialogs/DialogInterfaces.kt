@@ -1,6 +1,5 @@
 package dialogs
 
-import androidx.fragment.app.DialogFragment
 
 interface GameDialogListener {
     fun onDialogCreateGame(player:String)
