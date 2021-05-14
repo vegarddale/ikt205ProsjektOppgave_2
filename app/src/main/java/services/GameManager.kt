@@ -14,6 +14,7 @@ class GameManager @Inject constructor(private val gameService: GameService) {
 
     var currentGame: MutableLiveData<Game> = MutableLiveData()
     var gameOver:MutableLiveData<Boolean> = MutableLiveData(false)
+    var draw:MutableLiveData<Boolean> = MutableLiveData(false)
     val startingGameState: GameState = listOf(listOf("0","0","0"), listOf("0","0","0"), listOf("0","0","0"))
     var gameWinner = 0
 
@@ -119,9 +120,20 @@ class GameManager @Inject constructor(private val gameService: GameService) {
         return false
     }
 
+    private fun checkDraw(state: GameState):Boolean{
+        for(row in 0..2){
+            for(col in 0..2){
+                if(state[row][col] == "0") return false
+            }
+        }
+        return true
+    }
+
      fun checkGameOver(state: GameState){
         if (checkHorizontal(state)) gameOver.value = true
         if (checkDiagonal(state)) gameOver.value = true
         if (checkVertical(state)) gameOver.value = true
+         if(checkDraw(state)) draw.value = true
+
     }
 }

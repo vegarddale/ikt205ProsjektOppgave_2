@@ -20,7 +20,13 @@
             android:orientation="horizontal">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:text="game id: "/>
+            <TextView
                 android:id="@+id/gameId"
+                android:textSize="30sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -33,10 +39,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="30sp"
                 android:text="@string/player_1" />
 
             <TextView
                 android:id="@+id/player1"
+                android:textSize="30sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -48,11 +56,13 @@
 
             <TextView
                 android:layout_width="wrap_content"
+                android:textSize="30sp"
                 android:layout_height="wrap_content"
                 android:text="@string/player_2" />
 
             <TextView
                 android:id="@+id/player2"
+                android:textSize="30sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
