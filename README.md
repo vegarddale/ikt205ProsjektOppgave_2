@@ -16,6 +16,7 @@ the app has a gameservice responsible for the requests against the server.
 the app has a gamemanager managing the gameservice and it is responsible for storing and updating the current game data as well as the game rules.
 the gamemanagers data is wrapped in livedata which is then observed from the gamescreen to check for board updates and if the game is over.
 The app is using Hilt for dependency injecting the apps services.
+My unit tests are not working as i couldnt get an instance of the gamemanager in the test class.
 
 Here are some photos of the app:
 ![menu](https://user-images.githubusercontent.com/69875804/118203313-13604800-b45c-11eb-940d-5db860f2306c.PNG)
