@@ -179,6 +179,7 @@ class GameFragment : Fragment(), GameOverDialogFragment.GameOverDialogListener {
 
     override fun onDialogGameOver(dialog:GameOverDialogFragment) {
         gameManager.gameOver.value = false
+        gameManager.draw.value = false
         enableButtons()
         view?.findNavController()?.navigateUp()
     }
